@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Mac/OSX
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# You can uncomment these if dataset/models get too large
+# data/raw/*.npy
+# data/processed/*.npy
+# models/*.keras
+# models/*.tflite

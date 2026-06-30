@@ -1,0 +1,23 @@
+dataset:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  train_dir: "data/train"
+  val_dir: "data/validation"
+  test_dir: "data/test"
+  sequence_length: 20
+  sensor_resolution: [8, 8]
+
+classes:
+  - NONE
+  - LEFT
+  - RIGHT
+  - UP
+  - DOWN
+  - PUSH
+  - PULL
+
+model:
+  architecture: "cnn_gru"  # Lightweight sequence model
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.001
