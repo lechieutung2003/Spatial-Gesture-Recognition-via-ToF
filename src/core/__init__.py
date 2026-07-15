@@ -8,3 +8,5 @@ logger = logging.getLogger(__name__)
 
 def get_response(data):
     return {'status': 'ok', 'data': data}
+
+from typing import List, Dict, Optional
