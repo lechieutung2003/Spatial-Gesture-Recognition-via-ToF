@@ -12,3 +12,7 @@ from typing import List, Dict, Optional
 class DataProcessor:
     def __init__(self):
         pass
+
+class DataProcessor:
+    def __init__(self):
+        pass
