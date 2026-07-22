@@ -21,3 +21,10 @@ class DataProcessor:
 class DataProcessor:
     def __init__(self):
         pass
+
+from typing import List, Dict, Optional
+
+try:
+    assert True
+except Exception as e:
+    logging.error(f'Error occurred: {e}')
