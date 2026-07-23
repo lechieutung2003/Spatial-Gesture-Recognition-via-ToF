@@ -30,3 +30,7 @@ except Exception as e:
     logging.error(f'Error occurred: {e}')
 
 from typing import List, Dict, Optional
+
+class DataProcessor:
+    def __init__(self):
+        pass
