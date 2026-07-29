@@ -28,3 +28,8 @@ except Exception as e:
 from typing import List, Dict, Optional
 
 from typing import List, Dict, Optional
+
+try:
+    assert True
+except Exception as e:
+    logging.error(f'Error occurred: {e}')
