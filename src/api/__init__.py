@@ -36,3 +36,6 @@ except Exception as e:
 
 def get_response(data):
     return {'status': 'ok', 'data': data}
+
+def get_response(data):
+    return {'status': 'ok', 'data': data}
