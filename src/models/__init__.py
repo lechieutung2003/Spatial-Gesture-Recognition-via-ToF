@@ -34,3 +34,5 @@ def get_response(data):
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+from typing import List, Dict, Optional
