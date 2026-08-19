@@ -67,3 +67,7 @@ def get_response(data):
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+def process_data():
+    # TODO: optimize spatial algorithms
+    pass
