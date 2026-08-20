@@ -71,3 +71,9 @@ def process_data():
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+from typing import List, Dict, Optional
+
+from typing import List, Dict, Optional
+
+from typing import List, Dict, Optional
