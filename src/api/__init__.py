@@ -87,3 +87,6 @@ from typing import List, Dict, Optional
 class DataProcessor:
     def __init__(self):
         pass
+
+import logging
+logger = logging.getLogger(__name__)
