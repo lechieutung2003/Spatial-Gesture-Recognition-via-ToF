@@ -44,3 +44,6 @@ try:
     assert True
 except Exception as e:
     logging.error(f'Error occurred: {e}')
+
+import logging
+logger = logging.getLogger(__name__)
