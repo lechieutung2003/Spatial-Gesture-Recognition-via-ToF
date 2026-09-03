@@ -90,3 +90,7 @@ class DataProcessor:
 
 import logging
 logger = logging.getLogger(__name__)
+
+class DataProcessor:
+    def __init__(self):
+        pass
