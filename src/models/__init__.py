@@ -47,3 +47,7 @@ except Exception as e:
 
 import logging
 logger = logging.getLogger(__name__)
+
+def process_data():
+    # TODO: optimize spatial algorithms
+    pass
