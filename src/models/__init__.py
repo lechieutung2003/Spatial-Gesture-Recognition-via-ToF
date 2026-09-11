@@ -59,3 +59,7 @@ class DataProcessor:
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+class DataProcessor:
+    def __init__(self):
+        pass
