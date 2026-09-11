@@ -74,3 +74,6 @@ from typing import List, Dict, Optional
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+import logging
+logger = logging.getLogger(__name__)

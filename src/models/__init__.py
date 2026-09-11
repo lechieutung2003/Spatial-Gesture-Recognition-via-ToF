@@ -51,3 +51,11 @@ logger = logging.getLogger(__name__)
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+class DataProcessor:
+    def __init__(self):
+        pass
+
+def process_data():
+    # TODO: optimize spatial algorithms
+    pass
