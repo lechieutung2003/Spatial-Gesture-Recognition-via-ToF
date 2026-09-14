@@ -42,3 +42,7 @@ def get_response(data):
 class DataProcessor:
     def __init__(self):
         pass
+
+class DataProcessor:
+    def __init__(self):
+        pass
