@@ -63,3 +63,6 @@ def process_data():
 class DataProcessor:
     def __init__(self):
         pass
+
+def get_response(data):
+    return {'status': 'ok', 'data': data}
