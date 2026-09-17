@@ -113,3 +113,7 @@ logger = logging.getLogger(__name__)
 class DataProcessor:
     def __init__(self):
         pass
+
+def process_data():
+    # TODO: optimize spatial algorithms
+    pass
