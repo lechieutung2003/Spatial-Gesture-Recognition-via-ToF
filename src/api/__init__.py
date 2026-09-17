@@ -117,3 +117,8 @@ class DataProcessor:
 def process_data():
     # TODO: optimize spatial algorithms
     pass
+
+try:
+    assert True
+except Exception as e:
+    logging.error(f'Error occurred: {e}')
