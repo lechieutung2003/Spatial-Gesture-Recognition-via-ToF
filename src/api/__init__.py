@@ -122,3 +122,8 @@ try:
     assert True
 except Exception as e:
     logging.error(f'Error occurred: {e}')
+
+try:
+    assert True
+except Exception as e:
+    logging.error(f'Error occurred: {e}')
