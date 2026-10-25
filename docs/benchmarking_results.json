@@ -1,0 +1,84 @@
+{
+  "host_benchmark": [
+    {
+      "model_file": "gesture_model_f32.tflite",
+      "size_kb": 183.38,
+      "mean_ms": 0.155,
+      "std_ms": 0.105,
+      "p50_ms": 0.124,
+      "p95_ms": 0.315,
+      "p99_ms": 0.68,
+      "min_ms": 0.095,
+      "max_ms": 1.127,
+      "throughput_fps": 6440.0
+    },
+    {
+      "model_file": "gesture_model_f16.tflite",
+      "size_kb": 163.04,
+      "mean_ms": 0.247,
+      "std_ms": 0.309,
+      "p50_ms": 0.194,
+      "p95_ms": 0.54,
+      "p99_ms": 1.312,
+      "min_ms": 0.1,
+      "max_ms": 4.516,
+      "throughput_fps": 4056.7
+    },
+    {
+      "model_file": "gesture_model_int8.tflite",
+      "size_kb": 259.45,
+      "mean_ms": 0.116,
+      "std_ms": 0.045,
+      "p50_ms": 0.1,
+      "p95_ms": 0.211,
+      "p99_ms": 0.334,
+      "min_ms": 0.085,
+      "max_ms": 0.367,
+      "throughput_fps": 8618.8
+    }
+  ],
+  "model_complexity": {
+    "total_parameters": 11303,
+    "total_macs": 645744,
+    "model_memory_flash_kb": {
+      "gesture_model_f32.tflite": 183.38,
+      "gesture_model_f16.tflite": 163.04,
+      "gesture_model_int8.tflite": 259.45
+    }
+  },
+  "mcu_embedded_profiling": {
+    "ESP32-S3 (240MHz, Vector DSP)": {
+      "clock_mhz": 240,
+      "inference_latency_ms": 10.22,
+      "preprocess_latency_ms": 0.22,
+      "total_pipeline_ms": 10.44,
+      "sensor_frame_budget_ms": 66.67,
+      "headroom_pct": 84.3,
+      "max_supported_fps": 95.7,
+      "realtime_capable": true,
+      "tensor_arena_ram_kb": 38.0
+    },
+    "STM32H743 (480MHz, Cortex-M7)": {
+      "clock_mhz": 480,
+      "inference_latency_ms": 3.23,
+      "preprocess_latency_ms": 0.11,
+      "total_pipeline_ms": 3.34,
+      "sensor_frame_budget_ms": 66.67,
+      "headroom_pct": 95.0,
+      "max_supported_fps": 299.5,
+      "realtime_capable": true,
+      "tensor_arena_ram_kb": 38.0
+    },
+    "STM32F446 (180MHz, Cortex-M4)": {
+      "clock_mhz": 180,
+      "inference_latency_ms": 18.65,
+      "preprocess_latency_ms": 0.35,
+      "total_pipeline_ms": 19.0,
+      "sensor_frame_budget_ms": 66.67,
+      "headroom_pct": 71.5,
+      "max_supported_fps": 52.6,
+      "realtime_capable": true,
+      "tensor_arena_ram_kb": 38.0
+    }
+  }
+}
