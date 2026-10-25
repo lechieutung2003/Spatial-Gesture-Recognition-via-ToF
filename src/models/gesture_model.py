@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-def create_lightweight_model(sequence_length=20, num_classes=7):
+def create_lightweight_model(sequence_length=20, num_classes=7, unroll=True):
     """
     Creates a lightweight Spatio-Temporal model suitable for TinyML.
     
@@ -10,10 +10,10 @@ def create_lightweight_model(sequence_length=20, num_classes=7):
     -> Reshape to (T, 8, 8, 1)
     -> TimeDistributed(Conv2D) to extract spatial features from each frame
     -> TimeDistributed(MaxPooling2D) or TimeDistributed(Flatten)
-    -> GRU (Temporal modeling)
+    -> GRU (Temporal modeling, unrolled for pure TFLite Micro compatibility)
     -> Dense (Classification)
     
-    This keeps parameters low and is compatible with TFLite Micro.
+    This keeps parameters low and is fully compatible with TFLite Micro without Select TF Ops.
     """
     inputs = layers.Input(shape=(sequence_length, 8, 8))
     
@@ -31,8 +31,8 @@ def create_lightweight_model(sequence_length=20, num_classes=7):
     x = layers.TimeDistributed(layers.Flatten())(x) # Now (T, 64)
     
     # Temporal modeling
-    # A small GRU is sufficient for 20-frame sequences
-    x = layers.GRU(32, return_sequences=False)(x)
+    # An unrolled GRU avoids Flex/TensorList ops in TFLite Micro
+    x = layers.GRU(32, return_sequences=False, unroll=unroll)(x)
     
     # Classification
     x = layers.Dense(16, activation='relu')(x)

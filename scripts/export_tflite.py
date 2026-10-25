@@ -22,12 +22,11 @@ def main():
     print(f"Loading model from {model_path}...")
     model = tf.keras.models.load_model(model_path)
     
-    # 1. Standard Float32 TFLite
+    # 1. Standard Float32 TFLite (Pure TFLITE_BUILTINS, zero SELECT_TF_OPS)
     print("Exporting Float32 TFLite model...")
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
     converter.target_spec.supported_ops = [
-        tf.lite.OpsSet.TFLITE_BUILTINS, # enable TensorFlow Lite ops.
-        tf.lite.OpsSet.SELECT_TF_OPS # enable TensorFlow ops.
+        tf.lite.OpsSet.TFLITE_BUILTINS
     ]
     tflite_model_f32 = converter.convert()
     with open("models/gesture_model_f32.tflite", "wb") as f:
@@ -39,44 +38,25 @@ def main():
     converter.optimizations = [tf.lite.Optimize.DEFAULT]
     converter.target_spec.supported_types = [tf.float16]
     converter.target_spec.supported_ops = [
-        tf.lite.OpsSet.TFLITE_BUILTINS,
-        tf.lite.OpsSet.SELECT_TF_OPS
+        tf.lite.OpsSet.TFLITE_BUILTINS
     ]
     tflite_model_f16 = converter.convert()
     with open("models/gesture_model_f16.tflite", "wb") as f:
         f.write(tflite_model_f16)
         
-    # 3. Int8 Quantization
+    # 3. Int8 Dynamic Range & Weight Quantization
     print("Exporting Int8 TFLite model...")
-    converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    converter.optimizations = [tf.lite.Optimize.DEFAULT]
-    converter.representative_dataset = representative_dataset
-    # Ensure that if any ops can't be quantized, the converter throws an error
-    converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
-    # For full integer quantization
-    converter.inference_input_type = tf.int8
-    converter.inference_output_type = tf.int8
-    
     try:
+        converter = tf.lite.TFLiteConverter.from_keras_model(model)
+        converter.optimizations = [tf.lite.Optimize.DEFAULT]
+        converter.representative_dataset = representative_dataset
+        converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
         tflite_model_int8 = converter.convert()
         with open("models/gesture_model_int8.tflite", "wb") as f:
             f.write(tflite_model_int8)
         print("Int8 export successful.")
     except Exception as e:
-        print("Int8 export failed (often due to GRU/RNN op unsupported in pure INT8 TFLite Micro):", e)
-        print("Retrying Int8 export with default ops allowed (fallback to float for unsupported)...")
-        converter = tf.lite.TFLiteConverter.from_keras_model(model)
-        converter.optimizations = [tf.lite.Optimize.DEFAULT]
-        converter.representative_dataset = representative_dataset
-        converter.target_spec.supported_ops = [
-            tf.lite.OpsSet.TFLITE_BUILTINS,
-            tf.lite.OpsSet.SELECT_TF_OPS
-        ]
-        converter.inference_input_type = tf.float32
-        converter.inference_output_type = tf.float32
-        tflite_model_int8 = converter.convert()
-        with open("models/gesture_model_int8_fallback.tflite", "wb") as f:
-            f.write(tflite_model_int8)
+        print("Int8 export failed:", e)
             
     # Print sizes
     print("\nModel Sizes:")
